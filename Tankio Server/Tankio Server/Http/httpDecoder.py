@@ -4,4 +4,7 @@
 def decodeHttpMessage(msg):
     lines = msg.splitlines()
 
-    print(lines)
+    #Get URL from Request Line
+    url = lines[0].split(" ")[1]
+
+    print(url)

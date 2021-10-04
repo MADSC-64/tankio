@@ -22,7 +22,16 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="httpDecoder.py">
+    <Compile Include="ClientHandelling\clienthandler.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ClientHandelling\clientRequester.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Http\httpDecoder.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Http\httpEncoder.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Listener\listener.py">
@@ -32,7 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Listener\" />
-    <Folder Include="Client Handelling\" />
+    <Folder Include="ClientHandelling\" />
+    <Folder Include="Http\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
