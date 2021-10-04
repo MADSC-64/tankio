@@ -4,14 +4,14 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>ae1b8799-7ac6-42b4-ad08-815a9ea44879</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>
-    </StartupFile>
+    <StartupFile>main.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>tankio</Name>
     <RootNamespace>tankio</RootNamespace>
+    <IsWindowsApplication>False</IsWindowsApplication>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -23,11 +23,20 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="main.py" />
+    <Compile Include="Networking\Http\httpDecoder.py" />
+    <Compile Include="Networking\Http\httpEncoder.py" />
+    <Compile Include="Networking\networking.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Networking\roomNetworking.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\" />
     <Folder Include="Game Logic\" />
     <Folder Include="Networking\" />
+    <Folder Include="Networking\Http\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\game assets go here.txt" />

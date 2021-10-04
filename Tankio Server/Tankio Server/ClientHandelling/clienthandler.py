@@ -6,16 +6,17 @@ import ClientHandelling.clientRequester as requester
 BUFFER_SIZE = 2048
 
 def handle_TCP_client(conn):
-    data = conn.recv(BUFFER_SIZE)
+    try:
+        data = conn.recv(BUFFER_SIZE)
 
-    if len(data) == 0:
-        return
+        if len(data) == 0:
+            return
 
-    decoder.decodeHttpMessage(bytes.decode(data))
+        response = requester.perform_request(data.decode('utf-8'))
 
-    response = encoder.generate_Http_response("200 OK","test")
-
-    conn.send(bytes(response, 'utf-8'))  # echo
+        conn.send(bytes(response, 'utf-8'))  # echo
+    except Exception as ex:
+        print(ex)
 
 
 def create_TCP_client_handler(conn):
