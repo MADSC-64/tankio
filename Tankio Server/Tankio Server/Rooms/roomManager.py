@@ -22,6 +22,9 @@ def createRoomToken(name):
 
 def getRoomFromToken(token):
 
+    if len(activeRooms) == 0:
+        return False
+
     for i in activeRooms:
         id, psw, players = i
 
@@ -41,3 +44,14 @@ def joinRoom(token,name):
     players.append(name)
 
     return True
+
+def joinRandomRoom(name):
+    if len(activeRooms) == 0:
+        createRoomToken(name)
+        return
+
+    randomIndex = random.randint(0,len(activeRooms))
+
+    token, psw, players = activeRooms[randomIndex]
+
+    joinRoom(token,name)

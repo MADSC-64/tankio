@@ -39,6 +39,11 @@ def get_response(url,type,body):
             
         return ("500 Internal Server Error","Failed To Join")
 
+    if url == "/rest/room/join/random" and type == "POST":
+        rooms.joinRandomRoom(body["name"])
+        return ("200 OK","Joined Room")
+            
+
 
 
     return ("400 Bad Request","ERROR: 400 Bad Request")

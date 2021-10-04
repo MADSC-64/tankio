@@ -15,3 +15,8 @@ def join_room(token,name):
         return True
 
     return False
+
+def create_room(name):
+    content = json.dumps({'name':name})
+
+    result = networking.send_http_request("POST","/rest/room/create",content)
