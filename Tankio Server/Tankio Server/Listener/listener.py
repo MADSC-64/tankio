@@ -15,7 +15,12 @@ def listener_thread_UDP(server):
 
     while 1:
         data, addr = server.recvfrom(1024) # buffer size is 1024 bytes
-        print("received message: %s" % data)
+        response = client.handle_UDP_client(data,addr)
+
+        print(response)
+
+        if response != None:
+            server.sendto(response,addr)
 
 
 def start_listener_TCP(server):

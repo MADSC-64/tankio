@@ -18,6 +18,22 @@ def handle_TCP_client(conn):
     except Exception as ex:
         print(ex)
 
+def handle_UDP_client(data, addr):
+    try:
+        print("received message: %s" % data)
+
+        if len(data) == 0:
+            return
+
+        response =  requester.perform_UDP_request(data,addr)
+
+        print(response)
+
+        if len(response) != 0:
+           return bytes(response, 'utf-8')
+    except Exception as ex:
+        print(ex)
+
 
 def create_TCP_client_handler(conn):
     handler = threading.Thread(target=handle_TCP_client,args=(conn,))

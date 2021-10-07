@@ -16,6 +16,11 @@ def join_room(token,name):
 
     return False
 
+def get_room_player_data(token,name):
+    content = json.dumps({"type":"GET",'name':name,'token':token,'body':[]})
+
+    return networking.send_recieve_to_server_UDP(content)
+
 def create_room(name):
     content = json.dumps({'name':name})
 

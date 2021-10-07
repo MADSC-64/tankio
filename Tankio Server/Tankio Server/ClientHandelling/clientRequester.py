@@ -3,6 +3,13 @@ import Http.httpEncoder as encoder
 import Rooms.roomManager as rooms
 import json
 
+def perform_UDP_request(request,addr):
+    body = json.loads(request)
+
+    return get_UDP_response(body,addr)
+
+
+
 def perform_request(request):
     url,type,body = decoder.decodeHttpMessage(request)
 
@@ -47,3 +54,32 @@ def get_response(url,type,body):
 
 
     return ("400 Bad Request","ERROR: 400 Bad Request")
+
+def get_UDP_response(request,addr):
+    token = int( request["token"])
+    name = request["name"]
+    body = request["body"]
+    request_type = str( request["type"])
+
+    print(name)
+    print(token)
+    print(body)
+    print(request_type)
+
+    if request_type == "POST/PLAYER":
+        if rooms.getRoomFromToken(token) == False:
+            return
+
+        rooms.updateRoomPlayerData(token,name,body)
+
+    if request_type == "GET":
+        print("GET Method Started",rooms.getRoomFromToken(token))
+        data = rooms.getRoomData(token)
+        
+        if data == False:
+            return "ROOM ERROR"
+
+        return data
+
+    return "ERROR: METHOD NOT FOUND"
+

@@ -6,7 +6,7 @@ import json
 
 server_name = "127.0.0.1"
 server_port_TCP = 5005
-server_port_UDP = 5005
+server_port_UDP = 5000
 
 BUFFER_SIZE = 2048
 
@@ -14,8 +14,25 @@ socket_TCP = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 socket_UDP = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 
+def send_recieve_to_server_UDP(msg):
+    try:
+        socket_UDP.sendto(bytes(msg,'utf-8'),(server_name,server_port_UDP))
+        socket_UDP.settimeout(2)
+
+        data , addr = socket_UDP.recvfrom(1024)
+        print("received echo: ", data)
+        print("received at: " , addr )
+
+        return data
+    except socket.timeout:
+        print("timeout")
+
 def send_to_server_UDP(msg):
-    socket_UDP.sendto(bytes(msg,'utf-8'),(server_name,server_port_UDP))
+    try:
+        socket_UDP.sendto(bytes(msg,'utf-8'),(server_name,server_port_UDP))
+    except:
+        print("error")
+
 
 def connect_to_server_TCP():
     try:
