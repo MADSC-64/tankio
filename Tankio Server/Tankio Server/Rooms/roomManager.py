@@ -1,97 +1,36 @@
-import random
+from Rooms.room import room
+import random as rng
+import datetime
+import json
+
+active_rooms = []
+global_players = []
 
 
-activeRooms = []
+# Player Managment
 
-def getRandomRoom():
-    activeRooms[0]
+def get_global_players():
+    list = [{"name": x[0], "id": x[1], "connection_timestamp": x[2]} for x in global_players]
+    
+    return list
 
-def createRoomToken(name):
-    token = 0
+def player_connect(name):
+    while 1:
+        ts = datetime.datetime.now().timestamp()
+        player_id = rng.randint(100000,999999)
 
-    token = random.randint(10000,99999)
+        if (name,player_id) not in global_players:
+            global_players.append((name,player_id,ts))
+            return {'state':'conected','name':name,'id':player_id,'timestamp':ts}
 
-    while getRoomFromToken(token):
-        token = random.randint(10000,99999)
+def player_disconnect(name,id):
+    ts = datetime.datetime.now().timestamp()
 
+    for player in global_players:
+        if player[0] == name and int(player[1]) == id:
+            global_players.remove(player)
 
-    activeRooms.append((token,"test password",[name],[]))
+            return {'state':'disconected','name':name,'id':id,'timestamp':ts}
+    return {"state":"ERROR disconected player doesnt exist",'name':name,'id':id,'timestamp':ts}
 
-    return token
-
-
-def getRoomFromToken(token):
-
-    if len(activeRooms) == 0:
-        return False
-
-    for i in activeRooms:
-        id, psw, players,data = i
-
-        if id == int(token):
-            return i
-
-    return False
-
-def joinRoom(token,name):
-    room = getRoomFromToken(token)
-
-    if room == False:
-        return False
-
-    id, psw, players,data = room
-
-    players.append(name)
-
-    return True
-
-def joinRandomRoom(name):
-    if len(activeRooms) == 0:
-        createRoomToken(name)
-        return
-
-    randomIndex = random.randint(0,len(activeRooms))
-
-    id, psw, players,data = activeRooms[randomIndex]
-
-    joinRoom(token,name)
-
-# Player Room Data
-
-def UpdatePlayerData(name,old_data,new_data):
-    for i in old_data:
-        player_name, pos_x,pos_y,is_alive,last_fire_time = i
-
-        if player_name == name:
-            i = new_data
-            return old_data
-
-def getRoomData(token):
-    room = getRoomFromToken(token)
-
-    if room == False:
-        return False
-
-    id, psw, players,data = room
-
-    return data
-
-def updateRoomPlayerData(token,name,new_data):
-    room = getRoomFromToken(token)
-
-    if room == False:
-        return False
-
-    id, psw, players,data = room
-
-    data = UpdatePlayerData(name,data,new_data)
-
-def updateRoomPlayerData(token,name,new_data):
-    room = getRoomFromToken(token)
-
-    if room == False:
-        return False
-
-    id, psw, players,data = room
-
-    data = UpdatePlayerData(name,data,new_data)
+# 

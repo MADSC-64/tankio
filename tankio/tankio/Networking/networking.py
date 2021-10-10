@@ -4,7 +4,7 @@ import Networking.Http.httpEncoder as encoder
 import socket
 import json
 
-server_name = "127.0.0.1"
+server_name = "localhost"
 server_port_TCP = 5005
 server_port_UDP = 5000
 
@@ -26,6 +26,7 @@ def send_recieve_to_server_UDP(msg):
         return data
     except socket.timeout:
         print("timeout")
+        return None
 
 def send_to_server_UDP(msg):
     try:

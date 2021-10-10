@@ -25,6 +25,9 @@
     <Compile Include="GameLogic\gameLogic.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Rendering\gameRenderer.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="main.pyw" />
     <Compile Include="Networking\Http\httpDecoder.py" />
     <Compile Include="Networking\Http\httpEncoder.py" />
@@ -38,6 +41,7 @@
   <ItemGroup>
     <Folder Include="Assets\" />
     <Folder Include="GameLogic\" />
+    <Folder Include="Rendering\" />
     <Folder Include="Networking\" />
     <Folder Include="Networking\Http\" />
   </ItemGroup>
