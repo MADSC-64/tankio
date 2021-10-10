@@ -22,11 +22,17 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Clients\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="main.py" />
     <Compile Include="Rooms\room.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Rooms\RoomManager.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Rooms\__init__.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

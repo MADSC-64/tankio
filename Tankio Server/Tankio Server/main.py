@@ -1,9 +1,10 @@
 # Python 3 server example
 from http.server import BaseHTTPRequestHandler, HTTPServer
-import Rooms.RoomManager as rooms
+from Rooms import RoomManager as rooms
 import json
 import time
 import platform
+
 
 
 try:
@@ -85,21 +86,20 @@ try:
                 self.wfile.write(bytes("<body>", "utf-8"))
                 self.wfile.write(bytes("<p>404 ERROR</p>", "utf-8"))
                 self.wfile.write(bytes("</body></html>", "utf-8"))
+    
+    webServer = HTTPServer((hostName, serverPort), MyServer)
+    print("Server started http://%s:%s" % (hostName, serverPort))
 
-    if __name__ == "__main__":        
-        webServer = HTTPServer((hostName, serverPort), MyServer)
-        print("Server started http://%s:%s" % (hostName, serverPort))
+    try:
+        webServer.serve_forever()
+    except KeyboardInterrupt:
+        pass
 
-        try:
-            webServer.serve_forever()
-        except KeyboardInterrupt:
-            pass
-
-        webServer.server_close()
-        print("Server stopped.")
+    webServer.server_close()
+    print("Server stopped.")
 
     
 
 except Exception as e:
-    print(e)
+    print()
     input("")
