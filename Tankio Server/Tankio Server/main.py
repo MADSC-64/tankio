@@ -3,8 +3,11 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 import Rooms.RoomManager as rooms
 import json
 import time
+import platform
 
-hostName = "localhost"
+
+
+hostName = ""
 serverPort = 5005
 
 class MyServer(BaseHTTPRequestHandler):
@@ -25,6 +28,12 @@ class MyServer(BaseHTTPRequestHandler):
             self.send_header("Content-type", "text/html")
             self.end_headers()
             f = open("HTML/icon.html", 'rb')
+            self.wfile.write(f.read())
+        elif self.path == "/favicon.ico":
+            self.send_response(200)
+            self.send_header("Content-type", "text/html")
+            self.end_headers()
+            f = open("HTML/favicon.ico", 'rb')
             self.wfile.write(f.read())
         elif self.path == "/rest/players":
             self.send_response(200)
