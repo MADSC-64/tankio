@@ -16,7 +16,9 @@ namespace TankioServer.Listeners
             server = new HttpListener();  // this is the http server
             server.Prefixes.Add("http://127.0.0.1:5005/");  //we set a listening address here (localhost)
             server.Prefixes.Add("http://localhost:5005/");
+            server.Prefixes.Add("http://212.117.19.158:5005/");
             server.Prefixes.Add("http://server.wummo.eu:5005/");
+
 
             server.Start();   // and start the server
         }
