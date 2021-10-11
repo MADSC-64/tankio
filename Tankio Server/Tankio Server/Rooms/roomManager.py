@@ -1,4 +1,4 @@
-from Rooms.room import room
+from .room import room
 import random as rng
 import datetime
 import json
