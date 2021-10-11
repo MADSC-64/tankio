@@ -44,10 +44,7 @@ namespace TankioServer.Listeners
 
             Console.WriteLine(page);
 
-            TextReader tr = new StreamReader(page);
-            string msg = tr.ReadToEnd();  //getting the page's content
-
-            byte[] buffer = Encoding.UTF8.GetBytes(msg);
+            byte[] buffer = File.ReadAllBytes(page);
             //then we transform it into a byte array
 
             response.ContentLength64 = buffer.Length;  // set up the messasge's length
