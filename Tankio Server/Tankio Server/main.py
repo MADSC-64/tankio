@@ -1,6 +1,6 @@
 # Python 3 server example
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from Rooms import RoomManager as rooms
+import Rooms.RoomManager as rooms
 import json
 import time
 import platform
