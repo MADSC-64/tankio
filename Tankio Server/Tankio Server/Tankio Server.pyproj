@@ -35,6 +35,9 @@
     <Compile Include="Rooms\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Clients\" />
