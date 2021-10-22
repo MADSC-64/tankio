@@ -1,7 +1,0 @@
-C:\Users\luk83\Documents\GitHub\tankio\Tankio Server\TankioServer\bin\Debug\TankioServer.exe.config
-C:\Users\luk83\Documents\GitHub\tankio\Tankio Server\TankioServer\bin\Debug\TankioServer.exe
-C:\Users\luk83\Documents\GitHub\tankio\Tankio Server\TankioServer\bin\Debug\TankioServer.pdb
-C:\Users\luk83\Documents\GitHub\tankio\Tankio Server\TankioServer\obj\Debug\TankioServer.csprojAssemblyReference.cache
-C:\Users\luk83\Documents\GitHub\tankio\Tankio Server\TankioServer\obj\Debug\TankioServer.csproj.CoreCompileInputs.cache
-C:\Users\luk83\Documents\GitHub\tankio\Tankio Server\TankioServer\obj\Debug\TankioServer.exe
-C:\Users\luk83\Documents\GitHub\tankio\Tankio Server\TankioServer\obj\Debug\TankioServer.pdb

@@ -22,33 +22,35 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="GameLogic\gameLogic.py">
+    <Compile Include="gameLogic.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Rendering\gameRenderer.py">
+    <Compile Include="gameRenderer.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="gameUI.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="main.pyw" />
-    <Compile Include="Networking\Http\httpDecoder.py" />
-    <Compile Include="Networking\Http\httpEncoder.py" />
-    <Compile Include="Networking\networking.py">
+    <Compile Include="mainMenu.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Networking\roomNetworking.py">
+    <Compile Include="networking.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PlayerObject.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="roomNetworking.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\" />
-    <Folder Include="GameLogic\" />
     <Folder Include="Rendering\" />
-    <Folder Include="Networking\" />
-    <Folder Include="Networking\Http\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\game assets go here.txt" />
-    <Content Include="GameLogic\main game logic goes here.txt" />
-    <Content Include="Networking\networking please dont touch.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
