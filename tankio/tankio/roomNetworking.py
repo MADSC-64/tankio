@@ -2,14 +2,11 @@ import networking
 import json
 
 def create_player(name):
-    content = {'name':name,'id':0}
+    content =  {'name':name,'id':0}
 
     print(content)
 
     result = networking.send_http_request("POST","/rest/create/player",content)
-
-    print(json.loads(result))
-
 
     return json.loads(result)
 
@@ -22,8 +19,6 @@ def join_room(token,name,id):
 
     if result == None:
         return None
-
-    print(result)
 
     return json.loads(result)
 

@@ -12,26 +12,18 @@ class gameLogic:
         player = roomNetworking.create_player(msg)
         self.username = player["name"]
         self.id = player["id"]
-
-        print(self.username," ",self.id)
-
     def createRoom(self):
-        print(self.username)
-        print(self.id)
-
         room = roomNetworking.create_room(self.username,self.id)
     
         self.token = room["id"]
 
-        print(self.token )
+    def update_room_data(self,event_name,data):
+        roomNetworking.update_room_data(self.token,self.username,self.id,data,event_name)
 
     def getRoomData(self):
         return roomNetworking.get_room_data(self.token ,self.username,self.id)
 
     def joinRoom(self,token):
-        print(self.username)
-        print(self.id)
-
         room = roomNetworking.join_room(token,self.username,self.id)
 
         self.token = token
@@ -39,5 +31,5 @@ class gameLogic:
         if room == None:
             return None
 
-        print(room)
+        return room
 

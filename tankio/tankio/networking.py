@@ -16,14 +16,10 @@ def send_recieve_to_server_UDP(msg):
     try:
         msg = json.dumps(msg)
 
-        print(msg)
-
         socket_UDP.sendto(bytes(msg,'utf-8'),('192.168.0.198', 5000))
         socket_UDP.settimeout(2)
 
         data , addr = socket_UDP.recvfrom(1024)
-        print("received echo: ", data)
-        print("received at: " , addr )
 
         return json.loads(data)
     except socket.timeout:

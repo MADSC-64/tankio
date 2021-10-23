@@ -20,12 +20,11 @@ class PlayerObject(object):
         self.user_id = user_id
         self.room_token = room_token
 
-       
+
+
     def update(self):
 
         self.playerSprite.move((self.pos_x,self.pos_y))
-
-        print(self.weapon_rot*(math.pi / 180))
 
         gun_x_pos,gun_y_pos = self.pos_x - math.sin(self.weapon_rot*(math.pi / 180))*8,self.pos_y 
 
@@ -35,12 +34,28 @@ class PlayerObject(object):
         self.playerGun.rot(self.weapon_rot)
 
         if self.is_npc:
+            try:
+                room = network.get_room_data(self.room_token,self.username,self.user_id)
+                player = f"({self.username}, {self.user_id})"
+                for events in room["roomEvents"][player]:
+                    if events["eventName"] == "position":
+                        self.pos_x = events["eventValue"]["x"]
+                        self.pos_y = events["eventValue"]["y"]
+                        self.rot = events["eventValue"]["rotation"]
+                        self.weapon_rot = events["eventValue"]["weaponRotation"]
+
+                        break
+            except(Exception) as e:
+                print(e)
+
+                pos_data = {'x':self.pos_x,'y':self.pos_y,'rotation':self.rot,'weaponRotation':self.weapon_rot}
+
+                network.update_room_data(self.room_token,self.username,self.user_id,pos_data,'position')
             return
 
         pos_data = {'x':self.pos_x,'y':self.pos_y,'rotation':self.rot,'weaponRotation':self.weapon_rot}
 
         network.update_room_data(self.room_token,self.username,self.user_id,pos_data,'position')
-
 
         mouse_x, mouse_y = pygame.mouse.get_pos()
         rel_x, rel_y = mouse_x - self.pos_x, mouse_y - self.pos_y

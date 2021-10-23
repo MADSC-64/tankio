@@ -50,10 +50,16 @@ class Button():
         self.higlightColor = highlightColor
         self.size = size
         self.text = msg
+        self.interactive = True
         self.function = function
         self.currentColor = color
 
     def update(self):
+        if self.interactive == False:
+            self.currentColor = self.higlightColor
+            return
+
+
         mouse = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()
 
@@ -169,6 +175,10 @@ interactiveUIJoining = [
 InputField((375,450),(255,0,0),(155,0,0),(0,0,0),(400,100),50,(lambda a: joinRoom(a))),
 ]
 
+interactiveUILobby = [
+Button((375,750),(255,0,0),(155,0,0),(0,0,0),(400,100),50,"START GAME",(lambda : mainGameLogic.update_room_data("readyToJoin",True)))
+]
+
 def updateMainMenuGraphics(win):
 
     background.move((400-700*math.cos(time.time()*0.01),400-700*math.sin(time.time()*0.01)))
@@ -223,23 +233,54 @@ def updateMainMenuGraphics(win):
         win.blit(TextSurf, TextRect)
 
     if main_menu_scene == 3:
-        largeText = pygame.font.SysFont('didot.ttc', 50)
-        TextSurf = largeText.render("WAITING FOR OTHERS TO START:",True,(255,0,0))
-        TextRect = ((50),((864/2)-200))
-        win.blit(TextSurf, TextRect)
-
-        roomData = mainGameLogic.getRoomData()
-
-        player_count = 0
-
-        for playerObject in roomData["players"]:
-            player_count += 50
-            player_name = str( playerObject["name"])
-            player_id = str( playerObject["id"])
-
-            TextSurf = largeText.render(player_name+"  #"+player_id+" joined",True,(255,0,0))
-            TextRect = ((50),((864/2)-200+ player_count))
+        try:
+            largeText = pygame.font.SysFont('didot.ttc', 50)
+            TextSurf = largeText.render("ROOM #"+str(mainGameLogic.token)+" WAITING FOR OTHERS TO START:",True,(255,0,0))
+            TextRect = ((50),((864/2)-200))
             win.blit(TextSurf, TextRect)
 
-        pygame.time.wait(250)
+            roomData = mainGameLogic.getRoomData()
+
+            if roomData == None:
+                return
+
+            player_count = 0
+
+            ready_players = 0
+
+            total_players = len(roomData["players"])
+
+            for playerObject in roomData["players"]:
+                player_count += 50
+                player_name = str( playerObject["name"])
+                player_id = str( playerObject["id"])
+
+                player = "("+player_name+", "+player_id+")"
+
+                player_text = player_name+"  #"+player_id+" connected"
+
+                for events in roomData["roomEvents"][player]:
+                    if events["eventName"] == "readyToJoin":
+                        player_text += " and ready to join"
+                        ready_players += 1
+
+                TextSurf = largeText.render(player_text,True,(255,0,0))
+                TextRect = ((50),((864/2)-200+ player_count))
+                win.blit(TextSurf, TextRect)
+
+            for button in interactiveUILobby:
+                button.text = "Start Game "+str(ready_players)+"/"+str(total_players)
+
+                button.update()
+                button.draw(win)
+
+            if ready_players == total_players:
+                gameRenderer.changeScene(1)
+
+            pygame.time.wait(50)
+
+        except(Exception):
+            return
+
+        
 
