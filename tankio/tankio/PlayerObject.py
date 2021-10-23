@@ -1,10 +1,11 @@
 import pygame
 import os
 import pygame.imageext
+import roomNetworking as network
 import math
 
 class PlayerObject(object):
-    def __init__(self, pos,rot,is_npc):
+    def __init__(self, pos,rot,is_npc,username,user_id,room_token):
         super(PlayerObject,self).__init__()
         self.playerSprite = Player((0,0),0,"blue")
         self.playerGun = PlayerGun((0,0),0,"Blue")
@@ -14,6 +15,11 @@ class PlayerObject(object):
         self.pos_y = pos[1]
         self.rot = rot
         self.weapon_rot = 0
+
+        self.username = username
+        self.user_id = user_id
+        self.room_token = room_token
+
        
     def update(self):
 
@@ -30,6 +36,11 @@ class PlayerObject(object):
 
         if self.is_npc:
             return
+
+        pos_data = {'x':self.pos_x,'y':self.pos_y,'rotation':self.rot,'weaponRotation':self.weapon_rot}
+
+        network.update_room_data(self.room_token,self.username,self.user_id,pos_data,'position')
+
 
         mouse_x, mouse_y = pygame.mouse.get_pos()
         rel_x, rel_y = mouse_x - self.pos_x, mouse_y - self.pos_y

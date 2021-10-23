@@ -106,7 +106,12 @@ namespace TankioServer.Rooms
 
             if (targetRoom == null) return null;
 
-            if(!targetRoom.roomEvents.ContainsKey((name, id)))
+            if( targetRoom.roomEvents[("room", 0)].Exists(x => x.eventName == "started"))
+                return null;
+
+            targetRoom.players.Add(player);
+
+            if (!targetRoom.roomEvents.ContainsKey((name, id)))
                 targetRoom.roomEvents.Add((name, id), new List<Event> { new Event(Time.GetCurrentTimeStamp(), "joined", null) });
 
             return targetRoom;

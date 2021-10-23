@@ -77,6 +77,7 @@ namespace TankioServer.Client
 
                 string path = request.path.LocalPath;
 
+                Console.WriteLine(path);
                 Console.WriteLine(request.data);
 
                 switch (path)
@@ -89,10 +90,14 @@ namespace TankioServer.Client
 
                         string msg = JsonConvert.SerializeObject(room);
 
+                        
+
                         return createDataResponse(msg);
 
                     case "/rest/create/player":
                         playerData = JsonConvert.DeserializeObject<Player>(request.data);
+
+                        if(playerData == null) return HttpErrors.GenerateHttpError(500);
 
                         playerData = RoomManager.RegisterPlayer(playerData.name);
 
@@ -107,11 +112,16 @@ namespace TankioServer.Client
                     string roomIdString = path.Remove(0, 16);
 
                     int roomId = int.Parse(roomIdString);
+
+                    Console.WriteLine(roomId);
+
                     Player playerData = JsonConvert.DeserializeObject<Player>(request.data);
 
                     Room room = RoomManager.JoinRoom(playerData.name, playerData.id, roomId);
 
                     string msg = JsonConvert.SerializeObject(room);
+
+                    Console.WriteLine(msg);
 
                     return createDataResponse(msg);
                 }

@@ -7,7 +7,7 @@ import time
 import mainMenu as menu
 import gameUI as game
 
-
+scene = 0
 
 def updateEvents():
     for event in pygame.event.get():
@@ -24,9 +24,18 @@ def updateGraphics():
     pygame.display.flip()
 
 def changeScene(sceneID):
+    global scene
+
     scene = sceneID
 
-scene = 1
+    print(scene)
+
+    if scene == 1:
+        game.createPlayerObjects()
+
+
+
+
 
 pygame.init()
 run = True
@@ -38,5 +47,5 @@ programIcon = pygame.image.load('Assets/icon.png')
 pygame.display.set_icon(programIcon)
 
 while 1:
-    updateEvents()
+    updateEvents()    
     updateGraphics()

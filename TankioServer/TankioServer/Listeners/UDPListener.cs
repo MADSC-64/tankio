@@ -45,6 +45,8 @@ namespace TankioServer.Listeners
 
                     string request = Encoding.UTF8.GetString(data, 0, data.Length);
 
+                    Console.WriteLine(request);
+
                     string response = UDPHandler.ProcessRequest(request);
 
                     byte[] responseData = Encoding.UTF8.GetBytes(response);

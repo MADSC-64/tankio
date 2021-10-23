@@ -1,8 +1,10 @@
 import pygame
 import pygame.imageext
+import roomNetworking
 import os
 import math
 import time
+from main import mainGameLogic
 
 from PlayerObject import PlayerObject
 
@@ -39,8 +41,7 @@ class Background(pygame.sprite.Sprite):
     def update(self):
         self.rect.move_ip(self.velocity)
 
-
-playerList = [PlayerObject((1152/2,864/2),0,False),PlayerObject((1152/2+200,864/2+200),0,True),PlayerObject((1152/2-200,864/2-200),0,True)]
+playerList = []
 
 backgroundRenderGroup = pygame.sprite.RenderPlain()
 background = Background((300, 600),180)
@@ -48,9 +49,6 @@ backgroundRenderGroup.add(background)
 
 foregroundRenderGroup = pygame.sprite.RenderPlain()
 
-for player in playerList:
-    foregroundRenderGroup.add(player.playerSprite)
-    foregroundRenderGroup.add(player.playerGun)
 
 def updateGameGraphics(win):
 
@@ -64,7 +62,32 @@ def updateGameGraphics(win):
 
     backgroundRenderGroup.draw(win)
 
-
     foregroundRenderGroup.update()
 
     foregroundRenderGroup.draw(win)
+
+
+def createPlayerObjects():
+    print(mainGameLogic.username)
+    print(mainGameLogic.id)
+
+
+
+    roomData = roomNetworking.get_room_data(mainGameLogic.token,mainGameLogic.username,mainGameLogic.id)
+
+    for playerObject in roomData["players"]:
+        print(playerObject)
+
+        player_name = playerObject["name"]
+        player_id = playerObject["id"]
+
+        print(player_name," ", player_id)
+
+        if player_name == mainGameLogic.username and player_id == mainGameLogic.id:
+            playerList.append(PlayerObject((1152/2,864/2),0,False,mainGameLogic.username,mainGameLogic.id,mainGameLogic.token))
+        else:
+            playerList.append(PlayerObject((1152/2,864/2),0,True,mainGameLogic.username,mainGameLogic.id,mainGameLogic.token))
+
+    for player in playerList:
+        foregroundRenderGroup.add(player.playerSprite)
+        foregroundRenderGroup.add(player.playerGun)
