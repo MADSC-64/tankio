@@ -26,10 +26,9 @@ class gameLogic:
     def joinRoom(self,token):
         room = roomNetworking.join_room(token,self.username,self.id)
 
-        self.token = token
+        print(room)
 
-        if room == None:
-            return None
+        self.token = token
 
         return room
 

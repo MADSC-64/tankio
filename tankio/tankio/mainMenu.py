@@ -139,8 +139,9 @@ def createUser(msg):
 def joinRoom(msg):
     global joining_error
 
-    if gameLogic.joinRoom(msg) == None:
+    if mainGameLogic.joinRoom(msg) == None:
         changeMainMenuScene(0)
+        return
 
     changeMainMenuScene(3)
 
