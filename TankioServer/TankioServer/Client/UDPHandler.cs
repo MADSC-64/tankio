@@ -36,9 +36,7 @@ namespace TankioServer.Client
                             return JsonConvert.SerializeObject(Rooms.RoomManager.UpdateRoomData(playerName, playerID, roomID, dataName, dataOverride, data));
 
                         case "PLAYER":
-                            Rooms.RoomManager.UpdateRoomPlayerData(playerName, playerID, roomID, dataName, dataOverride, data);
-                            return ("");
-
+                            return JsonConvert.SerializeObject(Rooms.RoomManager.UpdateRoomPlayerData(playerName, playerID, roomID, dataName, dataOverride, data));
                         default:
                             return (@"{""type"": ""ERROR"",""message"": ""POST PROCESSING ERROR""}");
                     }

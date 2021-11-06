@@ -134,23 +134,23 @@ namespace TankioServer.Rooms
             return activeRooms.Find(x => x.id == roomID);
         }
 
-        public static void UpdateRoomPlayerData(string name, int id, int roomID, string eventName, bool overrideData, object data)
+        public static Room UpdateRoomPlayerData(string name, int id, int roomID, string eventName, bool overrideData, object data)
         {
             if (registeredPlayers.Count == 0)
-                return;
+                return null;
 
             Player player = GetRegisteredPlayer(name, id);
 
-            if (player == null) return;
+            if (player == null) return null;
 
             if (activeRooms.Count == 0)
             {
-                return;
+                return null;
             }
 
             Room targetRoom = activeRooms.Find(x => x.id == roomID);
 
-            if (targetRoom == null) return;
+            if (targetRoom == null) return null;
 
             Event roomEvent = new Event(Time.GetCurrentTimeStamp(), eventName, data);
 
@@ -161,17 +161,17 @@ namespace TankioServer.Rooms
                 if(targetEventIndex <= 0)
                 {
                     targetRoom.roomEvents[(name, id)].Add(roomEvent);
-                    return;
+                    return targetRoom;
                 }
 
                 targetRoom.roomEvents[(name, id)][targetEventIndex] = roomEvent;
 
-                return;
+                return targetRoom;
             }
 
             targetRoom.roomEvents[(name, id)].Add(roomEvent);
 
-            return;
+            return targetRoom;
         }
 
         public static Room UpdateRoomData(string name, int id, int roomID,string eventName,bool overrideData,object data)
