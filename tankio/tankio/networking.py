@@ -2,8 +2,8 @@ import requests
 import socket
 import json
 
-server_name = "http://192.168.0.198:5005"
-server_host = '192.168.0.198'
+server_name = "http://server.wummo.eu:5005"
+server_host = '212.117.19.158'
 server_port_TCP = 5005
 server_port_UDP = 5000
 
@@ -16,7 +16,7 @@ def send_recieve_to_server_UDP(msg):
     try:
         msg = json.dumps(msg)
 
-        socket_UDP.sendto(bytes(msg,'utf-8'),('192.168.0.198', 5000))
+        socket_UDP.sendto(bytes(msg,'utf-8'),('212.117.19.158', 5000))
         socket_UDP.settimeout(2)
 
         data , addr = socket_UDP.recvfrom(1024)
@@ -30,7 +30,7 @@ def send_to_server_UDP(msg):
     try:
         msg = json.dumps(msg)
 
-        socket_UDP.sendto(bytes(msg,'utf-8'),('192.168.0.198', 5000))
+        socket_UDP.sendto(bytes(msg,'utf-8'),('212.117.19.158', 5000))
     except Exception as e:
         print("sending exception :"+str(e))
 
