@@ -66,6 +66,8 @@ def updateGameGraphics(win):
 
     foregroundRenderGroup.draw(win)
 
+    pygame.time.wait(10)
+
 
 def createPlayerObjects():
     print(mainGameLogic.username)
@@ -86,7 +88,7 @@ def createPlayerObjects():
         if player_name == mainGameLogic.username and player_id == mainGameLogic.id:
             playerList.append(PlayerObject((1152/2,864/2),0,False,mainGameLogic.username,mainGameLogic.id,mainGameLogic.token))
         else:
-            playerList.append(PlayerObject((1152/2,864/2),0,True,mainGameLogic.username,mainGameLogic.id,mainGameLogic.token))
+            playerList.append(PlayerObject((1152/2,864/2),0,True,player_name ,player_id,mainGameLogic.token))
 
     for player in playerList:
         foregroundRenderGroup.add(player.playerSprite)
