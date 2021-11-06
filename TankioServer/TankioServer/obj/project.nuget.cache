@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "2pkCKDlWrmsSvYRH09qAbsP7mZRLITfDJn3coKmfoJdlyRXtmUfEJbDX8otxE3TgiRxSo9e2fG11jJqogMZ3ag==",
+  "dgSpecHash": "3PPnSQytkra4W+CqnB6aeGDPJBExYe88GRfQ+Z+Fn8aIQzKgTFx4dPkvPeGXncVQHWbCCS8JMbyNUzOt82jybg==",
   "success": true,
   "projectFilePath": "C:\\Users\\luk83\\Documents\\GitHub\\tankio\\TankioServer\\TankioServer\\TankioServer.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\luk83\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+    "C:\\Users\\luk83\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\luk83\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\5.0.3\\microsoft.netcore.app.runtime.win-x64.5.0.3.nupkg.sha512",
+    "C:\\Users\\luk83\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\5.0.3\\microsoft.windowsdesktop.app.runtime.win-x64.5.0.3.nupkg.sha512",
+    "C:\\Users\\luk83\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\5.0.3\\microsoft.aspnetcore.app.runtime.win-x64.5.0.3.nupkg.sha512"
   ],
   "logs": []
 }
