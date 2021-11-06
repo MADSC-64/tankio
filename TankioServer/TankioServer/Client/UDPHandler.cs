@@ -23,9 +23,6 @@ namespace TankioServer.Client
 
                 if(player == null) return (@"{""type"": ""ERROR"",""message"": ""PLAYER MISSING ERROR""}");
 
-                Console.WriteLine(requestType);
-                Console.WriteLine(requestType.StartsWith("POST"));
-
                 if (requestType.StartsWith("POST",StringComparison.CurrentCultureIgnoreCase))
                 {
                     requestType = requestType.Remove(0, 5);

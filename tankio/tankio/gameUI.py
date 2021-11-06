@@ -66,7 +66,7 @@ def updateGameGraphics(win):
 
     foregroundRenderGroup.draw(win)
 
-    pygame.time.wait(10)
+    pygame.time.wait(100)
 
 
 def createPlayerObjects():

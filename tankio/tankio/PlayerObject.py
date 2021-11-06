@@ -37,7 +37,6 @@ class PlayerObject(object):
             try:
                 room = network.get_room_data(self.room_token,self.username,self.user_id)
                 player = f"({self.username}, {self.user_id})"
-                print(player)
                 for events in room["roomEvents"][player]:
                     if events["eventName"] == "position":
                         self.pos_x = events["eventValue"]["x"]
