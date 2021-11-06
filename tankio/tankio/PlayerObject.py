@@ -46,11 +46,7 @@ class PlayerObject(object):
 
                         break
             except(Exception) as e:
-                print(e)
-
-                pos_data = {'x':self.pos_x,'y':self.pos_y,'rotation':self.rot,'weaponRotation':self.weapon_rot}
-
-                network.update_room_data(self.room_token,self.username,self.user_id,pos_data,'position')
+                print(f"error: {e}" )
             return
 
         pos_data = {'x':self.pos_x,'y':self.pos_y,'rotation':self.rot,'weaponRotation':self.weapon_rot}
