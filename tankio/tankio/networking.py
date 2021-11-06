@@ -21,6 +21,8 @@ def send_recieve_to_server_UDP(msg):
 
         data , addr = socket_UDP.recvfrom(1024)
 
+        print(data)
+
         return json.loads(data)
     except socket.timeout:
         print("timeout")

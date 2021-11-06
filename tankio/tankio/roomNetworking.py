@@ -23,12 +23,12 @@ def join_room(token,name,id):
     return json.loads(result)
 
 def get_room_data(token,name,id):
-    content = { "player":{"name":name,"id":id},  "id":token, "requestType": "GET/ROOM", "requestName": "","requestOverride":True,"timestamp": 0,"data": 'null'}
+    content = { "player":{"name":name,"id":id},  "id":token, "requestType": "GET/ROOM", "requestName": "","requestOverride":"true","timestamp": 0,"data": 'null'}
 
     return networking.send_recieve_to_server_UDP(content)
 
 def update_room_data(token,name,id,data,request_name):
-    content = { "player":{"name":name,"id":id},  "id":token, "requestType": "POST/PLAYER", "requestName": request_name,"requestOverride":True,"timestamp": 0,"data": data}
+    content = { "player":{"name":name,"id":id},  "id":token, "requestType": "POST/PLAYER", "requestName": request_name,"requestOverride":"true","timestamp": 0,"data": data}
 
     networking.send_to_server_UDP(content)
 

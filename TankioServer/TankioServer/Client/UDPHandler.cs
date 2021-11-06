@@ -37,7 +37,7 @@ namespace TankioServer.Client
 
                         case "PLAYER":
                             Rooms.RoomManager.UpdateRoomPlayerData(playerName, playerID, roomID, dataName, dataOverride, data);
-                            return (@"{""type"": ""SUCCESS"",""message"": ""DATA UPDATED""}");
+                            return ("");
 
                         default:
                             return (@"{""type"": ""ERROR"",""message"": ""POST PROCESSING ERROR""}");
